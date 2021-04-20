@@ -30,15 +30,15 @@
     }
     var axis = Math.abs(direction) === 1 ? 'x' : 'y'; 
     if (direction < 0) {
-      newHead[axis] -= GRID_SIZE; // Move left or down
+      newHead[axis] -= GRID_SIZE; // Move down or left
     } else {
-      newHead[axis] += GRID_SIZE; // Move right or up
+      newHead[axis] += GRID_SIZE; // Move up or right
     }
 
     
     if (food && food.x === newHead.x && food.y === newHead.y) {
       food = null;
-      snakeLength += 20;
+      snakeLength += 10; //snake growth rate
     }
 
     context.fillStyle = 'black';
@@ -67,7 +67,7 @@
       if (i > 0) snakeObj[stringifyCoord(a)] = true;
     }
 
-    if (snakeObj[stringifyCoord(newHead)]) end = true; 
+    if (snakeObj[stringifyCoord(newHead)]) end = true; //If snake runs into itself
 
     
     while (!food || snakeObj[stringifyCoord(food)]) {
