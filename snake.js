@@ -1,4 +1,5 @@
 (function() {
+  var Score = 0;
   var SIZE = 600; // Size of playing field
   var GRID_SIZE = SIZE / 50;
   var c = document.getElementById('c');
@@ -38,6 +39,9 @@
     
     if (food && food.x === newHead.x && food.y === newHead.y) {
       food = null;
+      Score += 10
+      document.getElementById("Score").innerText = 'Score: ' + Score;
+      document.getElementById("EatSound").play();
       snakeLength += 10; //snake growth rate
     }
 
@@ -54,8 +58,10 @@
     }
 
     
-    if (newHead.x < 0 || newHead.x >= SIZE || newHead.y < 0 || newHead.y >= SIZE) {
+    if (newHead.x < 0 || newHead.x >= SIZE || newHead.y < 0 || newHead.y >= SIZE) {  //Hits wall
+      document.getElementById("DieSound").play();
       end = true;
+
     }
 
     context.fillStyle = 'green';
